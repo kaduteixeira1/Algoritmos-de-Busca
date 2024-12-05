@@ -1,20 +1,23 @@
-def dfs(grafo, inicio, destino=None, visitado=None, caminho=None):
-    if visitado is None:
-        visitado = [False] * grafo.vertices
-    if caminho is None:
-        caminho = []
+def dfs(grafo, inicio, destino=None):
+    visitado = [False] * grafo.vertices
+    percurso_completo = []  
+    menor_caminho = []     
 
-    visitado[inicio] = True
-    caminho.append(inicio)
+    def explorar(vertice, caminho_atual):
+        nonlocal menor_caminho
+        visitado[vertice] = True
+        percurso_completo.append(vertice)  
+        caminho_atual.append(vertice)      
 
-    if inicio == destino:  
-        return caminho
+        if vertice == destino:
+            menor_caminho = caminho_atual[:]
 
-    for vizinho, _ in grafo.adjacencia[inicio]:
-        if not visitado[vizinho]:
-            resultado = dfs(grafo, vizinho, destino, visitado, caminho)
-            if resultado:
-                return resultado
+        for vizinho, _ in grafo.adjacencia[vertice]:
+            if not visitado[vizinho]:
+                explorar(vizinho, caminho_atual)
 
-    caminho.pop()
-    return None if destino else caminho
+        caminho_atual.pop()  # Remove o vértice ao retroceder na pilha
+
+    explorar(inicio, [])
+
+    return percurso_completo, (menor_caminho if destino is not None else None)

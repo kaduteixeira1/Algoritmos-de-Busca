@@ -27,17 +27,18 @@ def main():
     # Testar BFS
     print("\nCaminhamento em largura (BFS) a partir do vértice 0:")
     print("Caminho completo:", bfs(grafo, 0))
-    print("Caminho até o vértice 11:", bfs(grafo, 0, destino=11))
+    print("Caminho até o vértice:", bfs(grafo, 0, destino=7))
 
     # Testar DFS
     print("\nCaminhamento em profundidade (DFS) a partir do vértice 0:")
-    print("Caminho completo:", dfs(grafo, 0))
-    print("Caminho até o vértice 11:", dfs(grafo, 0, destino=11))
+    caminho_completo, caminho_ate_vertice = dfs(grafo, 0, destino=9)
+    print("Caminho completo:", caminho_completo)
+    print("Caminho até o vértice 7:", caminho_ate_vertice)
 
     # Testar Dijkstra
     print("\nMenores distâncias (Dijkstra) a partir do vértice 0:")
     print("Todas as distâncias:", dijkstra(grafo, 0))
-    print("Caminho mais curto até o vértice 11:", dijkstra(grafo, 0, destino=11))
+    print("Caminho mais curto até o vértice:", dijkstra(grafo, 0, destino=8))
 
     # Desenhar o grafo
     desenhar_grafo(grafo)
