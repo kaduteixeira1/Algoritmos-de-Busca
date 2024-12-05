@@ -2,6 +2,7 @@ from grafo import Grafo
 from bfs import bfs
 from dfs import dfs
 from dijkstra import dijkstra
+from desenhar_grafo import desenhar_grafo
 
 def main():
     grafo = Grafo(6)
@@ -30,5 +31,9 @@ def main():
     print("Todas as distâncias:", dijkstra(grafo, 0))
     print("Caminho mais curto até o vértice 5:", dijkstra(grafo, 0, destino=5))
 
+    # Desenhar o grafo
+    desenhar_grafo(grafo)
+
 if __name__ == "__main__":
     main()
+
